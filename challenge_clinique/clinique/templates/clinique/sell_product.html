@@ -1,0 +1,16 @@
+{% extends 'clinique/base.html' %}
+
+{% block title %}Vendre un Produit{% endblock %}
+
+{% block content %}
+<h2>Vendre un Produit</h2>
+<p>Produit : {{ product.name }}</p>
+<p>Quantité en stock : {{ product.stock_quantity }}</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Vendre</button>
+</form>
+<a href="{% url 'patient_list' %}">Retour à la liste des patients</a>
+{% endblock %}
+

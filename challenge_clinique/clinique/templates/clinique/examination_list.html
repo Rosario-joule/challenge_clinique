@@ -1,0 +1,27 @@
+{% extends 'clinique/base.html' %}
+
+{% block title %}Liste des Examens{% endblock %}
+
+{% block content %}
+<h2>Liste des Examens</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Type d'Examen</th>
+            <th>Date</th>
+            <th>Résultats</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exam in examinations %}
+        <tr>
+            <td>{{ exam.patient.name }}</td>
+            <td>{{ exam.exam_type }}</td>
+            <td>{{ exam.date }}</td>
+            <td>{{ exam.results }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

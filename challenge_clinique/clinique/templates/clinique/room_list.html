@@ -1,0 +1,28 @@
+{% extends 'clinique/base.html' %}
+
+{% block title %}Liste des Salles{% endblock %}
+
+{% block content %}
+<h2>Liste des Salles</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Numéro</th>
+            <th>Capacité</th>
+            <th>Occupants Actuels</th>
+            <th>Statut</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room.number }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ room.current_occupancy }}</td>
+            <td>{{ room.is_full|yesno:"Pleine,Libre" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_room' %}">Ajouter une Salle</a>
+{% endblock %}

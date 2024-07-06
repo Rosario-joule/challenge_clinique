@@ -1,0 +1,36 @@
+{% extends 'clinique/base.html' %}
+
+{% block title %}Liste des Patients{% endblock %}
+
+{% block content %}
+<h2>Liste des Patients</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Âge</th>
+            <th>Adresse</th>
+            <th>Numéro de Téléphone</th>
+            <th>Consulté</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.address }}</td>
+            <td>{{ patient.phone_number }}</td>
+            <td>{{ patient.consulted|yesno:"Oui,Non" }}</td>
+            <td>
+                <a href="{% url 'consult_patient' patient.id %}">Consulter</a>
+                {% if patient.consulted %}
+                | <a href="{% url 'hospitalize_patient' patient.consultation_set.first.id %}">Hospitaliser</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
